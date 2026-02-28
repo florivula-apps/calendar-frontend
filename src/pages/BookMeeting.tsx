@@ -54,7 +54,6 @@ export default function BookMeeting() {
         phone: bookingData.phone || undefined,
         date: format(bookingData.date, 'yyyy-MM-dd'),
         startTime: bookingData.timeSlot.startTime,
-        endTime: bookingData.timeSlot.endTime,
         message: bookingData.message || undefined,
       });
       setStep(6);

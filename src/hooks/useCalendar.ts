@@ -33,16 +33,16 @@ export function useBookings(status?: string) {
 
 export function useApproveBooking() {
   const queryClient = useQueryClient();
-  return useMutation<Booking, Error, number>({
-    mutationFn: (id: number) => api.put(`/calendar/bookings/${id}/approve`).then(r => r.data),
+  return useMutation<Booking, Error, string>({
+    mutationFn: (id: string) => api.put(`/calendar/bookings/${id}/approve`).then(r => r.data),
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ['bookings'] }),
   });
 }
 
 export function useRejectBooking() {
   const queryClient = useQueryClient();
-  return useMutation<Booking, Error, number>({
-    mutationFn: (id: number) => api.put(`/calendar/bookings/${id}/reject`).then(r => r.data),
+  return useMutation<Booking, Error, string>({
+    mutationFn: (id: string) => api.put(`/calendar/bookings/${id}/reject`).then(r => r.data),
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ['bookings'] }),
   });
 }
@@ -64,8 +64,8 @@ export function useCreateTimeSlot() {
 
 export function useDeleteTimeSlot() {
   const queryClient = useQueryClient();
-  return useMutation<void, Error, number>({
-    mutationFn: (id: number) => api.delete(`/calendar/slots/${id}`).then(r => r.data),
+  return useMutation<void, Error, string>({
+    mutationFn: (id: string) => api.delete(`/calendar/slots/${id}`).then(r => r.data),
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ['timeSlots'] }),
   });
 }

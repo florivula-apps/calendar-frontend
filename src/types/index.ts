@@ -69,7 +69,7 @@ export interface ApiError {
 }
 
 export interface Booking {
-  id: number;
+  id: string;
   name: string;
   email: string;
   phone?: string;
@@ -77,12 +77,12 @@ export interface Booking {
   startTime: string;
   endTime: string;
   message?: string;
-  status: 'pending' | 'approved' | 'rejected';
+  status: 'PENDING' | 'APPROVED' | 'REJECTED';
   createdAt: string;
 }
 
 export interface TimeSlot {
-  id: number;
+  id: string;
   date: string;
   startTime: string;
   endTime: string;
@@ -91,6 +91,8 @@ export interface TimeSlot {
 }
 
 export interface AvailabilitySlot {
+  id: string;
+  date: string;
   startTime: string;
   endTime: string;
 }
@@ -101,7 +103,6 @@ export interface CreateBookingInput {
   phone?: string;
   date: string;
   startTime: string;
-  endTime: string;
   message?: string;
 }
 

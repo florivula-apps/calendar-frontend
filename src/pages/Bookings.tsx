@@ -13,7 +13,7 @@ export default function Bookings() {
   const approveBooking = useApproveBooking();
   const rejectBooking = useRejectBooking();
 
-  const handleApprove = async (id: number) => {
+  const handleApprove = async (id: string) => {
     try {
       await approveBooking.mutateAsync(id);
       refetch();
@@ -22,7 +22,7 @@ export default function Bookings() {
     }
   };
 
-  const handleReject = async (id: number) => {
+  const handleReject = async (id: string) => {
     try {
       await rejectBooking.mutateAsync(id);
       refetch();
@@ -32,14 +32,14 @@ export default function Bookings() {
   };
 
   // Filter bookings
-  const pendingBookings = bookings.filter(b => b.status === 'pending');
+  const pendingBookings = bookings.filter(b => b.status === 'PENDING');
   const approvedBookings = bookings.filter(b => {
-    if (b.status !== 'approved') return false;
+    if (b.status !== 'APPROVED') return false;
     const bookingDate = parseISO(b.date);
     return isFuture(bookingDate) || isToday(bookingDate);
   });
   const pastBookings = bookings.filter(b => {
-    if (b.status !== 'approved') return false;
+    if (b.status !== 'APPROVED') return false;
     const bookingDate = parseISO(b.date);
     return isPast(bookingDate) && !isToday(bookingDate);
   });
@@ -63,8 +63,8 @@ export default function Bookings() {
           </div>
           <Badge 
             variant={
-              booking.status === 'approved' ? 'default' : 
-              booking.status === 'pending' ? 'secondary' : 
+              booking.status === 'APPROVED' ? 'default' : 
+              booking.status === 'PENDING' ? 'secondary' : 
               'destructive'
             }
             className="capitalize"
