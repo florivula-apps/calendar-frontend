@@ -1,11 +1,10 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Home, List, PlusCircle, User } from 'lucide-react';
+import { Calendar, Clock, User } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const navItems = [
-  { path: '/home', label: 'Home', icon: Home },
-  { path: '/items', label: 'Items', icon: List },
-  { path: '/create', label: 'Create', icon: PlusCircle },
+  { path: '/', label: 'Bookings', icon: Calendar },
+  { path: '/availability', label: 'Availability', icon: Clock },
   { path: '/profile', label: 'Profile', icon: User },
 ];
 
@@ -22,7 +21,7 @@ export default function BottomNav() {
         {navItems.map((item) => {
           const isActive =
             location.pathname === item.path ||
-            (item.path !== '/home' &&
+            (item.path !== '/' &&
               location.pathname.startsWith(item.path));
           const Icon = item.icon;
 
@@ -40,10 +39,7 @@ export default function BottomNav() {
               aria-current={isActive ? 'page' : undefined}
             >
               <Icon
-                className={cn(
-                  'h-6 w-6',
-                  item.path === '/create' && 'h-7 w-7',
-                )}
+                className="h-6 w-6"
                 strokeWidth={isActive ? 2.5 : 2}
               />
               <span className="text-[10px] font-medium leading-none">

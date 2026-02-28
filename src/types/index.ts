@@ -6,6 +6,12 @@ export interface User {
   createdAt: string;
 }
 
+export interface AuthResponse {
+  accessToken: string;
+  refreshToken: string;
+  user: User;
+}
+
 export interface AuthTokens {
   accessToken: string;
   refreshToken: string;
@@ -60,4 +66,47 @@ export interface ApiError {
   message: string;
   statusCode: number;
   errors?: Record<string, string[]>;
+}
+
+export interface Booking {
+  id: number;
+  name: string;
+  email: string;
+  phone?: string;
+  date: string;
+  startTime: string;
+  endTime: string;
+  message?: string;
+  status: 'pending' | 'approved' | 'rejected';
+  createdAt: string;
+}
+
+export interface TimeSlot {
+  id: number;
+  date: string;
+  startTime: string;
+  endTime: string;
+  isBooked: boolean;
+  createdAt: string;
+}
+
+export interface AvailabilitySlot {
+  startTime: string;
+  endTime: string;
+}
+
+export interface CreateBookingInput {
+  name: string;
+  email: string;
+  phone?: string;
+  date: string;
+  startTime: string;
+  endTime: string;
+  message?: string;
+}
+
+export interface CreateTimeSlotInput {
+  date: string;
+  startTime: string;
+  endTime: string;
 }
