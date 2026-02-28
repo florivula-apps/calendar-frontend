@@ -12,7 +12,7 @@ import type {
 export function useAvailability(date: string) {
   return useQuery<AvailabilitySlot[]>({
     queryKey: ['availability', date],
-    queryFn: () => api.get(`/calendar/availability?date=${date}`).then(r => r.data),
+    queryFn: () => api.get(`/calendar/availability?date=${date}`).then(r => r.data.timeSlots),
     enabled: !!date,
   });
 }
@@ -27,7 +27,7 @@ export function useCreateBooking() {
 export function useBookings(status?: string) {
   return useQuery<Booking[]>({
     queryKey: ['bookings', status],
-    queryFn: () => api.get(`/calendar/bookings${status ? `?status=${status}` : ''}`).then(r => r.data),
+    queryFn: () => api.get(`/calendar/bookings${status ? `?status=${status}` : ''}`).then(r => r.data.bookings),
   });
 }
 
@@ -50,7 +50,7 @@ export function useRejectBooking() {
 export function useTimeSlots() {
   return useQuery<TimeSlot[]>({
     queryKey: ['timeSlots'],
-    queryFn: () => api.get('/calendar/slots').then(r => r.data),
+    queryFn: () => api.get('/calendar/slots').then(r => r.data.timeSlots),
   });
 }
 
